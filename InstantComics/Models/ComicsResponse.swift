@@ -10,7 +10,7 @@
 import Foundation
 
 // The top level comics response struct
-struct ComicsResponse: Codable {
+struct ComicsResponse: Codable, Equatable{
     let month: String
     let num: Int
     let link, year, news, safeTitle: String

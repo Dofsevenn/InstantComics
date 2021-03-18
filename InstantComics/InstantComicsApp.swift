@@ -18,7 +18,7 @@ struct InstantComicsApp: App {// Replaysing the app delegate. This is where the 
     
     var body: some Scene {
         WindowGroup {
-            ComicListView()
+            ComicsView()
         }
         .onChange(of: scenePhase) { phase in
             switch phase {
