@@ -7,6 +7,7 @@
 
 import Combine
 import Foundation
+import SwiftUI
 
 //Enum to define error messaging
 enum NetworkError: Error, LocalizedError, Identifiable {
@@ -30,12 +31,42 @@ enum NetworkError: Error, LocalizedError, Identifiable {
 // Spesific api based on number: http://xkcd.com/614/info.0.json
 
 class Webservice {
+    var testUrl: String = ""
     
-    func getComics(completion: @escaping (Result<ComicsResponse, NetworkError>) -> Void) {
-        let urlCurrent = "http://xkcd.com/info.0.json"
-        let urlSpesific = "http://xkcd.com/614/info.0.json"
+    func getCurrentComic(url: String, completion: @escaping (Result<ComicsResponse, NetworkError>) -> Void) {
         
-        guard let url = URL(string: urlSpesific ) else {
+//        if 1 == 1 {
+//            testUrl = "http://xkcd.com/info.0.json"
+//        }
+        
+        guard let url = URL(string: url ) else {
+            completion(.failure(.urlError))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            DispatchQueue.main.async {
+                guard let data = data, error == nil else {
+                    completion(.failure(.getDataError))
+                    return
+                }
+                
+                let decoder = JSONDecoder()
+                
+                let comics = try? decoder.decode(ComicsResponse.self, from: data)
+                
+                if let comics = comics {
+                    completion(.success(comics))
+                } else {
+                    completion(.failure(.decodingError))
+                }
+            }
+        }.resume()
+    }
+    
+    func getSpecifiedComic(url: String, completion: @escaping (Result<ComicsResponse, NetworkError>) -> Void) {
+        
+        guard let url = URL(string: url ) else {
             completion(.failure(.urlError))
             return
         }

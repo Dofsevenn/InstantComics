@@ -4,12 +4,12 @@
 //
 //  Created by Kjetil Skyldstad Bjelldokken on 17/03/2021.
 //
-
+import Combine
 import SwiftUI
 
 struct ComicsCompacView: View {
     @ObservedObject var comicsVM = ComicsViewModel()
-   
+    @State private var buttonDisabled = true
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10){
@@ -24,7 +24,7 @@ struct ComicsCompacView: View {
            
             HStack {
                 Button(action: {
-                    print("Clicked")
+                    comicsVM.onClickPreviousComic()
                 }) {
                     Text("<  Previous")
                         .padding()
@@ -46,13 +46,20 @@ struct ComicsCompacView: View {
                 
                 Button(action: {
                     print("Clicked")
+                    if comicsVM.currentComicNumber == comicsVM.newestComicNumber {
+                        buttonDisabled = true
+                    } else {
+                        buttonDisabled = false
+                    }
                 }) {
                     Text("next  >")
                         .frame(width: 120, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .background(Color.blue)
+                        .background(buttonColor)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
+                .disabled(isNewestComic)
+                
             }
             .frame(minWidth: 0, maxWidth: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             
@@ -62,8 +69,9 @@ struct ComicsCompacView: View {
                 .frame(minWidth: 0, idealWidth: 400,  maxWidth: .infinity, minHeight: 0, idealHeight: 350, maxHeight: .infinity, alignment: .center)
                 .padding(.leading, 10)
                 .padding(.trailing, 10)
-                //.border(Color.red)
+                
             Spacer()
+            
             HStack {
                 Text("ReleaseNo: \(comicsVM.num)")
                 
@@ -78,13 +86,20 @@ struct ComicsCompacView: View {
             .padding()
             
             Spacer()
-            
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
         .border(Color.purple)
         .onAppear {
-            comicsVM.fetchComicsData()
+            comicsVM.fetchCurrentComicData()
         }
+    }
+    
+    var isNewestComic: Bool {
+        return comicsVM.currentComicNumber == comicsVM.newestComicNumber
+    }
+    
+    var buttonColor: Color {
+        return isNewestComic ? .gray : .blue
     }
 }
 

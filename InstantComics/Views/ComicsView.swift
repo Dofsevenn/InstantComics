@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ComicsView: View {
     @Environment(\.horizontalSizeClass) var sizeClass
@@ -20,6 +21,7 @@ struct ComicsView: View {
             ZStack {
                 Color(UIColor.CustomBackground.black)
                 
+                // To differ between small and large screens (Portrait and landscape mode)
                 if sizeClass == .compact {
                         ComicsCompacView()
                             .navigationTitle("Comic List")

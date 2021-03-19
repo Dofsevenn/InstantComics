@@ -26,6 +26,7 @@ struct ComicsLargeView: View {
                 VStack(alignment: .trailing) {
                     Button(action: {
                         print("Clicked")
+                        comicsVM.fetchSpesificComicData(number: 614)
                     }) {
                         Text("<  Previous")
                             .padding()
@@ -80,7 +81,7 @@ struct ComicsLargeView: View {
                 .scaledToFit()
                 .frame(minWidth: 0, idealWidth: 400,  maxWidth: .infinity, minHeight: 0, idealHeight: 350, maxHeight: .infinity, alignment: .center)
                 .padding(.top, 10)
-                .padding(.trailing, 10)
+                .padding(.bottom, 10)
     
             Spacer()
             
@@ -88,7 +89,7 @@ struct ComicsLargeView: View {
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
         .border(Color.purple)
         .onAppear {
-            comicsVM.fetchComicsData()
+            comicsVM.fetchCurrentComicData()
         }
     }
 }
