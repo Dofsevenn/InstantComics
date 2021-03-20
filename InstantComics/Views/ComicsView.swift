@@ -20,10 +20,16 @@ struct ComicsView: View {
             ZStack {
                 Color(UIColor.CustomBackground.black)
                 
-                // To differ between small and large screens (Portrait and landscape mode)
+                // SizeClass to differ between small and large screens (Portrait and landscape mode)
                 if sizeClass == .compact {
                     ComicsCompacView()
                         .navigationTitle("Comic List")
+                    // Hvis jeg legger til search bar
+//                        .navigationBarItems(trailing: Button(action: {
+//
+//                        }, label: {
+//                            Text("Refresh")
+//                        }))
                 } else {
                     ComicsLargeView()
                         .navigationTitle("Comic List")

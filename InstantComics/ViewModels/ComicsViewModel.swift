@@ -13,7 +13,6 @@ import SwiftUI
 class ComicsViewModel: ObservableObject {
     
     @Published private var currentComicData: ComicsResponse?
-    @Published private var specificComicData: ComicsResponse?
     @Published var error: NetworkError?
     
     var newestComicNumber = 0
@@ -53,6 +52,21 @@ class ComicsViewModel: ObservableObject {
             return 0
         }
         return numInt
+    }
+    
+    var alt: String {
+        guard let altString = currentComicData?.alt else {
+            return ""
+        }
+        return altString
+    }
+    
+    var description: String {
+        print(self.currentComicData?.transcript as Any)
+        guard let descriptionString = currentComicData?.transcript else {
+            return ""
+        }
+        return descriptionString
     }
     
     // Get previous comic when previous button is clicked
@@ -101,7 +115,7 @@ class ComicsViewModel: ObservableObject {
                 self.currentComicData = currentComicData
                 self.newestComicNumber = self.currentComicData?.num ?? 0
                 self.currentComicNumber = self.newestComicNumber
-                //print(self.currentComicData as Any)
+                print(self.currentComicData?.transcript as Any)
                 //print(self.newestComicNumber)
             case .failure(let error):
                 switch error {
@@ -125,7 +139,7 @@ class ComicsViewModel: ObservableObject {
             case .success(let specificComicData):
                 self.currentComicData = specificComicData
                 self.currentComicNumber = self.currentComicData?.num ?? 0
-                //print(self.specificComicData as Any)
+                print(self.currentComicData?.transcript as Any)
                 print(self.currentComicNumber)
             case .failure(let error):
                 switch error {

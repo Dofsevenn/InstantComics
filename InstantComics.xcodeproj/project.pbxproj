@@ -17,6 +17,7 @@
 		24662C1C25FFFD9600A5F253 /* ComicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24662C1B25FFFD9600A5F253 /* ComicsView.swift */; };
 		24662C1E25FFFD9800A5F253 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24662C1D25FFFD9800A5F253 /* Assets.xcassets */; };
 		24662C2125FFFD9800A5F253 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24662C2025FFFD9800A5F253 /* Preview Assets.xcassets */; };
+		24A891DC260696B300632EF2 /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A891DB260696B300632EF2 /* DescriptionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		24662C1D25FFFD9800A5F253 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24662C2025FFFD9800A5F253 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		24662C2225FFFD9800A5F253 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24A891DB260696B300632EF2 /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				24662C1B25FFFD9600A5F253 /* ComicsView.swift */,
 				245284FC2602B46A00D1E470 /* ComicsCompacView.swift */,
 				24161447260403B600967B6C /* ComicsLargeView.swift */,
+				24A891DB260696B300632EF2 /* DescriptionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 				245284FD2602B46A00D1E470 /* ComicsCompacView.swift in Sources */,
 				245284F5260149A300D1E470 /* ComicsViewModel.swift in Sources */,
 				245284EF2600D8E400D1E470 /* Webservice.swift in Sources */,
+				24A891DC260696B300632EF2 /* DescriptionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
