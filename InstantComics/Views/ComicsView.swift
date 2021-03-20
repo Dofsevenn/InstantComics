@@ -13,8 +13,7 @@ struct ComicsView: View {
     
     @ObservedObject var comicsVM = ComicsViewModel()
     
-    // If curren == number -> get all numbers lover than current
-    // If number == 0 -> get all numbers higer then current
+    // Fikse at den henter nyeste når man vrir telefonen
     
     var body: some View {
         NavigationView {
@@ -23,12 +22,13 @@ struct ComicsView: View {
                 
                 // To differ between small and large screens (Portrait and landscape mode)
                 if sizeClass == .compact {
-                        ComicsCompacView()
-                            .navigationTitle("Comic List")
+                    ComicsCompacView()
+                        .navigationTitle("Comic List")
                 } else {
                     ComicsLargeView()
                         .navigationTitle("Comic List")
                 }
+                
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())

@@ -55,35 +55,41 @@ class ComicsViewModel: ObservableObject {
         return numInt
     }
     
-    
-    func onClickPreviousComic() {
+    // Get previous comic when previous button is clicked
+    func onClickPreviousButton() {
         if currentComicNumber == 1 {
             return
         } else {
-            currentComicNumber = currentComicNumber - 1
+            currentComicNumber -= 1
         }
         fetchSpesificComicData(number: currentComicNumber)
     }
     
-    func onClickNextComic() {
+    // Get next comic when next button is clicked
+    func onClickNextButton() {
         if currentComicNumber == newestComicNumber {
-            
+            return
+        } else {
+            currentComicNumber += 1
         }
+        fetchSpesificComicData(number: currentComicNumber)
     }
     
-     // Logic to fetch the previous comic
-//    func getPreviousComic() {
-//        currentDisplayedComicNumber =
-//
-//        if currentDisplayedComicNumber > 1 {
-//            fetchSpesificComicData() med currentDisplayedComicNumber - 1
-//        }
-//    }
+    // Get random comic when random button is clicked
+    func onClickRandomButton() {
+        currentComicNumber = Int.random(in: 1...newestComicNumber)
+        fetchSpesificComicData(number: currentComicNumber)
+    }
     
-//    func getTestComic() {
-//        var url = "http://xkcd.com/info.0.json"
-//        var newesComicData = fetchCurrentComicData(url: url)
-//    }
+    // Get the newest comic when Skip to the end button is clicked
+    func onClickSkipToTheEndButton() {
+        fetchCurrentComicData()
+    }
+    
+    // Get the first comic when Skip to the start button is clicked
+    func onClickSkipToTheStartButton() {
+        fetchSpesificComicData(number: 1)
+    }
     
     // Fetching data from Api, the newest comic
     func fetchCurrentComicData() {

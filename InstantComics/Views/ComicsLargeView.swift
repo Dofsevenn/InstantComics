@@ -25,8 +25,7 @@ struct ComicsLargeView: View {
                 
                 VStack(alignment: .trailing) {
                     Button(action: {
-                        print("Clicked")
-                        comicsVM.fetchSpesificComicData(number: 614)
+                        comicsVM.onClickPreviousButton()
                     }) {
                         Text("<  Previous")
                             .padding()
@@ -37,7 +36,7 @@ struct ComicsLargeView: View {
                     }
                     
                     Button(action: {
-                        print("Clicked")
+                        comicsVM.onClickRandomButton()
                     }) {
                         Text("Random")
                             .padding()
@@ -48,16 +47,43 @@ struct ComicsLargeView: View {
                     }
                     
                     Button(action: {
-                        print("Clicked")
+                        comicsVM.onClickNextButton()
                     }) {
                         Text("next  >")
                             .frame(width: 120, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .background(buttonColor)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                    .disabled(isNewestComic)
+                }
+                .frame(minWidth: 0, maxWidth: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                
+                HStack{
+                    Button(action: {
+                        comicsVM.onClickSkipToTheStartButton()
+                    }) {
+                        Text("|<")
+                            .frame(width: 50, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                             .background(Color.blue)
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
+                    .padding(.leading, 20)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        comicsVM.onClickSkipToTheEndButton()
+                    }) {
+                        Text(">|")
+                            .frame(width: 50, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                    .padding(.trailing, 20)
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 
                 Spacer()
                 
@@ -91,6 +117,14 @@ struct ComicsLargeView: View {
         .onAppear {
             comicsVM.fetchCurrentComicData()
         }
+    }
+    
+    var isNewestComic: Bool {
+        return comicsVM.currentComicNumber == comicsVM.newestComicNumber
+    }
+    
+    var buttonColor: Color {
+        return isNewestComic ? .gray : .blue
     }
 }
 

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ComicsCompacView: View {
     @ObservedObject var comicsVM = ComicsViewModel()
-    @State private var buttonDisabled = true
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10){
@@ -24,41 +23,37 @@ struct ComicsCompacView: View {
            
             HStack {
                 Button(action: {
-                    comicsVM.onClickPreviousComic()
+                    comicsVM.onClickPreviousButton()
                 }) {
                     Text("<  Previous")
-                        .padding()
-                        .frame(width: 120, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .frame(width: 100, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         .background(Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
                 
                 Button(action: {
-                    print("Clicked")
+                    comicsVM.onClickRandomButton()
                 }) {
                     Text("Random")
-                        .frame(width: 120, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .frame(width: 100, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         .background(Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
                 
                 Button(action: {
-                    print("Clicked")
-                    if comicsVM.currentComicNumber == comicsVM.newestComicNumber {
-                        buttonDisabled = true
-                    } else {
-                        buttonDisabled = false
-                    }
+                    comicsVM.onClickNextButton()
                 }) {
                     Text("next  >")
-                        .frame(width: 120, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .frame(width: 100, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         .background(buttonColor)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
                 .disabled(isNewestComic)
+                
+                
                 
             }
             .frame(minWidth: 0, maxWidth: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
@@ -69,6 +64,33 @@ struct ComicsCompacView: View {
                 .frame(minWidth: 0, idealWidth: 400,  maxWidth: .infinity, minHeight: 0, idealHeight: 350, maxHeight: .infinity, alignment: .center)
                 .padding(.leading, 10)
                 .padding(.trailing, 10)
+            
+            HStack{
+                Button(action: {
+                    comicsVM.onClickSkipToTheStartButton()
+                }) {
+                    Text("|<")
+                        .frame(width: 50, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                .padding(.leading, 20)
+                
+                Spacer()
+                
+                Button(action: {
+                    comicsVM.onClickSkipToTheEndButton()
+                }) {
+                    Text(">|")
+                        .frame(width: 50, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                .padding(.trailing, 20)
+            }
+            .frame(minWidth: 0, maxWidth: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 
             Spacer()
             
