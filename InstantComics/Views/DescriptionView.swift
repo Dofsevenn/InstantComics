@@ -13,6 +13,7 @@ struct DescriptionView: View {
     var body: some View {
         ZStack {
             Color(UIColor.CustomBackground.black)
+            
             ScrollView {
                 VStack {
                     Text("Comic Description")

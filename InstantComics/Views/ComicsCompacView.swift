@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ComicsCompacView: View {
     @ObservedObject var comicsVM = ComicsViewModel()
+    
     @State var showAlert = false
     @State var buttonAction: Int? = 0
     @State private var description = ""
@@ -80,7 +81,6 @@ struct ComicsCompacView: View {
             // Bottom buton container
             HStack{
                 Button(action: {
-                    print(comicsVM.description)
                     comicsVM.onClickSkipToTheStartButton()
                 }) {
                     Text("|<")
@@ -112,11 +112,11 @@ struct ComicsCompacView: View {
                 Spacer()
                 
                 Button(action: actionSheet) {
-                            Image(systemName: "square.and.arrow.up")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 36, height: 36)
-                        }
+                    Image(systemName: "square.and.arrow.up")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 40, height: 40)
+                }
                     
                 Spacer()
                 
@@ -165,7 +165,9 @@ struct ComicsCompacView: View {
     // Function to
     func actionSheet() {
         guard let data = URL(string: comicsVM.image) else { return }
+        
         let activityVC = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+        
         UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
     }
     

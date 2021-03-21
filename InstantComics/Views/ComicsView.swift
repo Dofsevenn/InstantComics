@@ -48,7 +48,6 @@ extension UIColor{
 
 // Converting image string to url, and then to data and then create UIImage from data
 extension String {
-    
     func load() -> UIImage {
         do {
             guard let url = URL(string: self) else {
@@ -60,7 +59,6 @@ extension String {
         } catch {
             
         }
-        
         return UIImage()
     }
 }

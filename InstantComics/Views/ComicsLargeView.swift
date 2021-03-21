@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ComicsLargeView: View {
     @ObservedObject var comicsVM = ComicsViewModel()
+    
     @State var showAlert = false
     @State var buttonAction: Int? = 0
     @State private var description = ""
@@ -101,11 +102,11 @@ struct ComicsLargeView: View {
                     Spacer()
                     
                     Button(action: actionSheet) {
-                                Image(systemName: "square.and.arrow.up")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 36, height: 36)
-                            }
+                        Image(systemName: "square.and.arrow.up")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 40, height: 40)
+                    }
                         
                     Spacer()
                     
@@ -140,7 +141,6 @@ struct ComicsLargeView: View {
                     Text("Year: \(comicsVM.year)")
                 }
                 .padding()
-                
             }
             
             // Image container, and right container
@@ -158,6 +158,7 @@ struct ComicsLargeView: View {
                     .alert(isPresented: $showAlert) {
                         Alert(title: Text(""), message: Text(comicsVM.alt), dismissButton: .default(Text("Close")))
                     }
+                
                 Text("Press and hold the image to se the description!")
                     .padding(.bottom, 17)
             }
@@ -165,7 +166,6 @@ struct ComicsLargeView: View {
             Spacer()
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-        .border(Color.purple)
         .onAppear {
             comicsVM.fetchCurrentComicData()
         }
@@ -173,7 +173,9 @@ struct ComicsLargeView: View {
     
     func actionSheet() {
         guard let data = URL(string: comicsVM.image) else { return }
+        
         let activityVC = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+        
         UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
     }
     
