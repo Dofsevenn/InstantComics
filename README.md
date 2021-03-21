@@ -4,10 +4,9 @@
 * Swift 5 
 * SwifUI
 
-
 ## Description of the solution
-* This app is a comics app where you can get comics from XKCD in your phone. With pressing buttons, you kan get the newest comic, the comic, the previous one, the next and also get a random comic. You can see the title, which number the comic are, which day, month and year it was published. If you longpress on the comic (Image) you get a littel alert box with the "alt" text. There is also a description button which take you to the new view where you see the description.
-* It is possible to use the app in both landscape mode and portrait mode. 
+* This app is a comics app where you can get comics from XKCD in your phone. With pressing buttons, you kan get the newest comic, the first comic, the previous one, the next comic and also get a random comic. You can see the comic title, which number the comic has, which day, month and year it was published. If you longpress on the comic (Image) you get a littel alert box with the "alt" text. There is also a description button which take you to a new view where you see the description of the current comic. There is also possible to send a comic to other apps e.g Messenger.
+* It is possible to use the app in both landscape mode and portrait mode, and it works both in light and dark mode.
 
 ## The thought process
 * Because I use SwiftUI it was natural to use MVVM designpattern. As far as I know Apple switched from recommending MVC with UIKit to MVVM with SwiftUI. For me it makes sense because SwiftUI uses State and ObjectBinding (ObservableObject). In MVVM the View is aware of the ViewModel. The View informes teh ViewModel about User interractions, and when something changes in the the ViewModel, the View will know and updates the View. The ViewModel is aware of the Model, and interact with it by save and get data.
@@ -19,11 +18,13 @@
 * I wanted the app to work in landscape mode as well as Portrait mode, så I used Environmet and sizeClass to differentiate the to modes.
 * I saw i the XKCD webpage that you can se the "alt" text when you hoover over the comic image. I wanted the same effect, so I did so by making an alert that shows that text if you longPress the comic image.
 * I also wanted to show the description (the transcript text if there are any). I made a button that uses a Navigation link to navigate to the Description View where you can read the description if the comic has one. To make this happen I had to use the NavigationView. This View also gives a nice Heading to the pages. I thought of using a sheet instead, but went with the navigation link. It might have given a better experience for the user with the sheet, but didn't have time to change in the end.  
+* In the end I manage to implement code so you can share the comic to other apps like Messenger or what you chooses. 
 
 ## Highlight
 * I think the way I use a Webserver struct for the urlSession, and fetch the result in the ComicsViewModel is quite organiced and clean.
 * I'm pretty happy with the way I used @State, @Published, ObservableObject, @ObservedObject. I think that is on of the best things with SwiftUI
 * I'm glad that I managed to make the app work in both light and dark mode. I think it is important to suport dark mode because dark mode is helping some people inkluding me.
+* That I made it possible to send comics to other apps.
 
 
 ## Links to sites I used as inspiration to code:
