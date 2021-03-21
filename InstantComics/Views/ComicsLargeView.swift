@@ -27,7 +27,7 @@ struct ComicsLargeView: View {
                 
                 Spacer()
                 
-                VStack(alignment: .trailing) {
+                HStack/*(alignment: .trailing)*/ {
                     Button(action: {
                         comicsVM.onClickPreviousButton()
                     }) {
