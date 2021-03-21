@@ -27,17 +27,9 @@ enum NetworkError: Error, LocalizedError, Identifiable {
     }
 }
 
-// Current comics api: http://xkcd.com/info.0.json
-// Spesific api based on number: http://xkcd.com/614/info.0.json
-
-class Webservice {
-    var testUrl: String = ""
+struct Webservice {
     
     func getCurrentComic(url: String, completion: @escaping (Result<ComicsResponse, NetworkError>) -> Void) {
-        
-//        if 1 == 1 {
-//            testUrl = "http://xkcd.com/info.0.json"
-//        }
         
         guard let url = URL(string: url ) else {
             completion(.failure(.urlError))

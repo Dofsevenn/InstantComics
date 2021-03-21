@@ -71,10 +71,10 @@
 				24662C2925FFFEBC00A5F253 /* Views */,
 				24662C2B25FFFEE200A5F253 /* ViewModels */,
 				24662C2C25FFFEF800A5F253 /* Models */,
+				245284EE2600D8E400D1E470 /* Webservice.swift */,
 				24662C1D25FFFD9800A5F253 /* Assets.xcassets */,
 				24662C2225FFFD9800A5F253 /* Info.plist */,
 				24662C1F25FFFD9800A5F253 /* Preview Content */,
-				245284EE2600D8E400D1E470 /* Webservice.swift */,
 			);
 			path = InstantComics;
 			sourceTree = "<group>";

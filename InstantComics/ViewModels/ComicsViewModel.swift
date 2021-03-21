@@ -115,8 +115,6 @@ class ComicsViewModel: ObservableObject {
                 self.currentComicData = currentComicData
                 self.newestComicNumber = self.currentComicData?.num ?? 0
                 self.currentComicNumber = self.newestComicNumber
-                print(self.currentComicData?.transcript as Any)
-                //print(self.newestComicNumber)
             case .failure(let error):
                 switch error {
                 case .urlError:
@@ -139,8 +137,6 @@ class ComicsViewModel: ObservableObject {
             case .success(let specificComicData):
                 self.currentComicData = specificComicData
                 self.currentComicNumber = self.currentComicData?.num ?? 0
-                print(self.currentComicData?.transcript as Any)
-                print(self.currentComicNumber)
             case .failure(let error):
                 switch error {
                 case .urlError:

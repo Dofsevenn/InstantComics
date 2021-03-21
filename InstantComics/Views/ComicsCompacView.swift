@@ -11,7 +11,7 @@ struct ComicsCompacView: View {
     @ObservedObject var comicsVM = ComicsViewModel()
     @State var showAlert = false
     @State var buttonAction: Int? = 0
-    @State private var description = "Hei"
+    @State private var description = ""
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10){
