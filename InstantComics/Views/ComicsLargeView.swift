@@ -11,15 +11,16 @@ struct ComicsLargeView: View {
     @ObservedObject var comicsVM = ComicsViewModel()
     @State var showAlert = false
     @State var buttonAction: Int? = 0
-    @State private var description = "Hei"
+    @State private var description = ""
     
     var body: some View {
         HStack {
             Spacer()
-            
+            // Left container
             VStack {
                 Spacer()
                 
+                // Comic title
                 Text(comicsVM.title)
                     .bold()
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
@@ -27,7 +28,8 @@ struct ComicsLargeView: View {
                 
                 Spacer()
                 
-                HStack/*(alignment: .trailing)*/ {
+                // Top button container
+                HStack {
                     Button(action: {
                         comicsVM.onClickPreviousButton()
                     }) {
@@ -65,6 +67,7 @@ struct ComicsLargeView: View {
                 
                 Spacer()
                 
+                // Bottom buttons container
                 HStack{
                     Button(action: {
                         comicsVM.onClickSkipToTheStartButton()
@@ -97,6 +100,15 @@ struct ComicsLargeView: View {
                     
                     Spacer()
                     
+                    Button(action: actionSheet) {
+                                Image(systemName: "square.and.arrow.up")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 36, height: 36)
+                            }
+                        
+                    Spacer()
+                    
                     Button(action: {
                         comicsVM.onClickSkipToTheEndButton()
                     }) {
@@ -111,6 +123,7 @@ struct ComicsLargeView: View {
                 
                 Spacer()
                 
+                // Information container
                 HStack {
                     Text("No: \(comicsVM.num)")
                     
@@ -130,6 +143,7 @@ struct ComicsLargeView: View {
                 
             }
             
+            // Image container, and right container
             VStack{
                 Image(uiImage: comicsVM.image.load())
                     .resizable()
@@ -155,6 +169,12 @@ struct ComicsLargeView: View {
         .onAppear {
             comicsVM.fetchCurrentComicData()
         }
+    }
+    
+    func actionSheet() {
+        guard let data = URL(string: comicsVM.image) else { return }
+        let activityVC = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+        UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
     }
     
     var isNewestComic: Bool {

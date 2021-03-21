@@ -17,6 +17,7 @@ struct ComicsCompacView: View {
         VStack(alignment: .leading, spacing: 10){
             Spacer()
             
+            // Comic title
             Text(comicsVM.title)
                 .bold()
                 .frame(minWidth: 0, maxWidth: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
@@ -24,6 +25,7 @@ struct ComicsCompacView: View {
                 
             Spacer()
            
+            // Top button container
             HStack {
                 Button(action: {
                     comicsVM.onClickPreviousButton()
@@ -58,8 +60,10 @@ struct ComicsCompacView: View {
             }
             .frame(minWidth: 0, maxWidth: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             
+            // Comic image and text on top
             Text("Press and hold the image to see the description!")
                 .frame(minWidth: 0, maxWidth: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            
             Image(uiImage: comicsVM.image.load())
                 .resizable()
                 .scaledToFit()
@@ -67,13 +71,13 @@ struct ComicsCompacView: View {
                 .padding(.leading, 10)
                 .padding(.trailing, 10)
                 .onLongPressGesture {
-                    print("pressed")
                     self.showAlert = true
                 }
                 .alert(isPresented: $showAlert) {
                     Alert(title: Text(""), message: Text(comicsVM.alt), dismissButton: .default(Text("Close")))
                 }
             
+            // Bottom buton container
             HStack{
                 Button(action: {
                     print(comicsVM.description)
@@ -107,6 +111,15 @@ struct ComicsCompacView: View {
                 
                 Spacer()
                 
+                Button(action: actionSheet) {
+                            Image(systemName: "square.and.arrow.up")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 36, height: 36)
+                        }
+                    
+                Spacer()
+                
                 Button(action: {
                     comicsVM.onClickSkipToTheEndButton()
                 }) {
@@ -122,6 +135,7 @@ struct ComicsCompacView: View {
                 
             Spacer()
             
+            // Information container
             HStack {
                 Text("No: \(comicsVM.num)")
                 
@@ -146,6 +160,13 @@ struct ComicsCompacView: View {
         .onAppear {
             comicsVM.fetchCurrentComicData()
         }
+    }
+    
+    // Function to
+    func actionSheet() {
+        guard let data = URL(string: comicsVM.image) else { return }
+        let activityVC = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+        UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
     }
     
     // to check if the current comic is the newest one

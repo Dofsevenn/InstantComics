@@ -13,8 +13,6 @@ struct ComicsView: View {
     
     @ObservedObject var comicsVM = ComicsViewModel()
     
-    // Fikse at den henter nyeste når man vrir telefonen
-    
     var body: some View {
         NavigationView {
             ZStack {
@@ -24,17 +22,10 @@ struct ComicsView: View {
                 if sizeClass == .compact {
                     ComicsCompacView()
                         .navigationTitle("Comic List")
-                    // Hvis jeg legger til search bar
-//                        .navigationBarItems(trailing: Button(action: {
-//
-//                        }, label: {
-//                            Text("Refresh")
-//                        }))
                 } else {
                     ComicsLargeView()
                         .navigationTitle("Comic List")
                 }
-                
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
